@@ -27,7 +27,7 @@ class FinalViewController: UIViewController {
         
         setupConstraints()
         
-        nameLabel.text = (UserDefaults.standard.string(forKey: "name")!) + " " +  UserDefaults.standard.string(forKey: "surname")!
+        nameLabel.text = (UserDefaults.standard.string(forKey: "name") ?? "") + " " +  (UserDefaults.standard.string(forKey: "surname") ?? "")
     }
 
     private func setupConstraints() {

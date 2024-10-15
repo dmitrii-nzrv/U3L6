@@ -9,6 +9,8 @@ import UIKit
 import KeychainSwift
 
 class RegistrationViewController: UIViewController {
+    let keychain = KeychainSwift()
+    
     // MARK: UI
     lazy var registrationLabel: UILabel = createLabel(text: "Регистрация")
     
@@ -39,8 +41,6 @@ class RegistrationViewController: UIViewController {
             UserDefaults.standard.set(name, forKey: "name")
             UserDefaults.standard.set(surname, forKey: "surname")
                    
-            
-            let keychain = KeychainSwift()
             keychain.set(password, forKey: "pw")
            
             UserDefaults.standard.set(true, forKey: "isLogin")

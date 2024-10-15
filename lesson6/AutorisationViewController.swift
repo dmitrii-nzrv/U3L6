@@ -8,7 +8,7 @@
 import UIKit
 import KeychainSwift
 class AutorisationViewController: UIViewController {
-    
+    let keychain = KeychainSwift()
     lazy var autorisationLabel: UILabel = createLabel(text: "Авторизация")
     lazy var emailTextField = createTextField(placeholder: "Email", isSecure: false)
     lazy var passwordTextField = createTextField(placeholder: "Password", isSecure: true)
@@ -27,9 +27,10 @@ class AutorisationViewController: UIViewController {
     @objc func regBtnTapped() {
         let email = emailTextField.text ?? ""
         let password = passwordTextField.text ?? ""
-        let keychain = KeychainSwift()
-        //keychain.set(password, forKey: "pw")
+        
+        
         if email == UserDefaults.standard.string(forKey: "email") && password == keychain.get("pw") {
+            UserDefaults.standard.set(true, forKey: "isLogin")
             NotificationCenter.default.post(name: NSNotification.Name("SwitchToSecondViewController"), object: nil)
         } else {
             print("wrong password or email")
